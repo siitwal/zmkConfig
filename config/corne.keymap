@@ -89,7 +89,7 @@
 				&kp ESC   &kp N1    &kp N2 &kp N3 &kp N4   &kp N5       &kp N6   &kp N7    &kp N8    &kp N9    &kp N0 &kp BSPC
 				&kp LGUI  &kp PSCRN &none  &none  &kp TAB  &none        &kp LEFT &kp DOWN  &kp UP    &kp RIGHT &none  &none
 				&kp LSHFT &none     &tog 5 &none  &none    &kp CAPS     &kp HOME &kp PG_DN &kp PG_UP &kp END   &none  &none
-							                  &none &mo 1 &kp SPACE     &kp RET  &kp RCTRL &kp RALT
+							                  &none &mo 1 &kp SPACE     &kp RET  &kp LCTRL &kp LALT
 			>;
 		};
 
@@ -111,10 +111,10 @@
 // ╚════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
 
 			bindings = <
-				&kp ESC   &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT     &kp CARET &kp AMPS  &kp LPAE &kp RPAE &kp STAR &kp BSPC
+				&kp ESC   &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT     &kp CARET &kp AMPS  &kp LPAR &kp RPAR &kp STAR &kp BSPC
 				&kp LGUI  &none    &none  &none    &none    &none         &kp MINUS &kp EQUAL &kp LBKT &kp RBKT &kp BSLH &kp GRAVE
 				&kp LSHFT &none    &none  &none    &none    &none         &kp UNDER &kp PLUS  &kp LBRC &kp RBRC &kp PIPE &kp TILDE
-					                            &mo 2 &none &kp SPACE     &kp RET &kp RCTRL &kp RALT
+					                            &mo 2 &none &kp SPACE     &kp RET &kp LCTRL &kp LALT
 			>;
 		};
 
