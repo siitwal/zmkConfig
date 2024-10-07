@@ -17,7 +17,10 @@
 #include <dt-bindings/zmk/outputs.h>
 
 
-&soft_off { hold-time-ms = <5000>; };
+&soft_off {
+	hold-time-ms = <5000>; 
+	split-peripheral-off-on-press;
+};
 &caps_word { continue-list = <BACKSPACE DELETE>; };
 
 
