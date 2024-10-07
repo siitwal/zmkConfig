@@ -18,7 +18,7 @@
 
 
 &soft_off {
-	hold-time-ms = <5000>; 
+	hold-time-ms = <2000>; 
 };
 &caps_word { continue-list = <BACKSPACE DELETE UNDER>; };
 
