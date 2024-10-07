@@ -155,11 +155,11 @@
 // ╔════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
 // ║																		                                    ║
 // ║   ┌───────┬───────┬───────┬───────┬───────┬───────┐    ┌───────┬───────┬───────┬───────┬───────┬───────┐   ║
-// ║   │       │       │       │       │       │       │    │ BR_MX │ BR_UP │ BR_AT │ BR_DN │ BR_MN │ K_LCK │   ║
+// ║   │ C_PWR │ C_RST │       │       │       │       │    │ BR_MX │ BR_UP │ BR_AT │ BR_DN │ BR_MN │       │   ║
 // ║   ├───────┼───────┼───────┼───────┼───────┼───────┤    ├───────┼───────┼───────┼───────┼───────┼───────┤   ║
-// ║   │       │       │       │       │       │       │    │       │ VL_UP │ MUTE  │ VL_DN │       │ K_SLP │   ║
+// ║   │ C_LCK │ C_LGO │       │       │       │       │    │       │ VL_UP │ MUTE  │ VL_DN │       │       │   ║
 // ║   ├───────┼───────┼───────┼───────┼───────┼───────┤    ├───────┼───────┼───────┼───────┼───────┼───────┤   ║
-// ║   │       │       │       │       │       │       │    │       │  PRV  │  PP   │  NXT  │       │       │   ║
+// ║   │ C_SLP │       │       │       │       │       │    │       │  PRV  │  PP   │  NXT  │       │       │   ║
 // ║   └───────┴───────┴───────┼───────┼───────┼───────┤    ├───────┼───────┼───────┼───────┴───────┴───────┘   ║
 // ║                           │       │       │       │    │       │       │       │					        ║
 // ║ 	    	 	           └───────┴───────┴───────┘    └───────┴───────┴───────┘                           ║
@@ -167,10 +167,10 @@
 // ╚════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
 
 			bindings = <
-				&none &none &none &none &none &none      &kp C_BRI_MAX &kp C_BRI_UP &kp C_BRI_AUTO &kp C_BRI_DN &kp C_BRI_MIN &kp K_LOCK 
-				&none &none &none &none &none &none      &none         &kp C_VOL_UP &kp C_MUTE     &kp C_VOL_DN &none         &kp K_SLEEP 
-				&none &none &none &none &none &none      &none         &kp  C_PREV  &kp  C_PP      &kp  C_NEXT  &none         &none
-					              &none &none &none      &none &none &none 
+				&C_PWR     &C_RESET     &none &none &none &none      &kp C_BRI_MAX &kp C_BRI_UP &kp C_BRI_AUTO &kp C_BRI_DN &kp C_BRI_MIN &none 
+				&C_AL_LOCK &C_AL_LOGOFF &none &none &none &none      &none         &kp C_VOL_UP &kp C_MUTE     &kp C_VOL_DN &none         &none 
+				&C_SLEEP   &none        &none &none &none &none      &none         &kp  C_PREV  &kp  C_PP      &kp  C_NEXT  &none         &none
+					                          &none &none &none      &none &none &none 
 			>;
 		};
 
