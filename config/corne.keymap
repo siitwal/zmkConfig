@@ -18,8 +18,7 @@
 
 
 &soft_off {
-	hold-time-ms = <5000>; 
-	split-peripheral-off-on-press;
+	hold-time-ms = <2000>; 
 };
 &caps_word { continue-list = <BACKSPACE DELETE>; };
 
@@ -188,7 +187,7 @@
 
 			bindings = <
 				&bt BT_CLR &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4         &none        &none &none &none &none &soft_off
-				&bt BT_NXT &none         &none         &none         &none         &none                &out OUT_USB &none &none &none &none &ext_power EP_ON
+				&bt BT_NXT &soft_off     &none         &none         &none         &none                &out OUT_USB &none &none &none &none &ext_power EP_ON
 				&bt BT_PRV &bt BT_DISC 0 &bt BT_DISC 1 &bt BT_DISC 2 &bt BT_DISC 3 &bt BT_DISC 4        &out OUT_BLE &none &none &none &none &ext_power EP_OFF
 				                                                              &none &none &tog 5        &none &none &none
 			>;
