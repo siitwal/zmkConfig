@@ -5,3 +5,5 @@ type: shield
 url: https://github.com/siitwal/zmkConfig
 requires: 
   - i2c_oled
+features:
+  - display
