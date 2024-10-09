@@ -1,0 +1,7 @@
+file_format: "1"
+id: corne_display
+name: corne_display
+type: shield
+requires: 
+  - i2c_oled
+  - display
