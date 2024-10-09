@@ -1,5 +1,8 @@
 if SHIELD_CORNE_DISPLAY
 
+config CONFIG_ZMK_DISPLAY
+	default y
+
 config ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
     select LV_USE_LABEL
     select LV_USE_IMG
