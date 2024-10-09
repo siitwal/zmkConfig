@@ -4,4 +4,3 @@ name: corne_display
 type: shield
 requires: 
   - i2c_oled
-  - display
