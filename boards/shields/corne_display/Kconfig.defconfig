@@ -1,7 +1,8 @@
 if SHIELD_CORNE_DISPLAY
 
-config CONFIG_ZMK_DISPLAY
-	default y
+choice ZMK_DISPLAY_STATUS_SCREEN
+    default ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
+endchoice
 
 config ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
     select LV_USE_LABEL
@@ -37,10 +38,6 @@ endchoice
 
 choice LV_COLOR_DEPTH
     default LV_COLOR_DEPTH_1
-endchoice
-
-choice ZMK_DISPLAY_STATUS_SCREEN
-    default ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
 endchoice
 
 endif
