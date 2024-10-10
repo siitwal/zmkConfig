@@ -9,6 +9,9 @@ choice ZMK_DISPLAY_STATUS_SCREEN
 endchoice
 
 config ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
+    imply CORNE_WIDGET_STATUS
+
+config CORNE_WIDGET_STATUS
     select LV_USE_LABEL
     select LV_USE_IMG
     select LV_USE_CANVAS
