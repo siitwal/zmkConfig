@@ -21,12 +21,6 @@ config CORNE_WIDGET_STATUS
     select LV_USE_LINE 
     select LV_FONT_UNSCII_8
 
-config I2C
-    default y
-
-config SSD1306
-    default y
-
 config LV_Z_VDB_SIZE
     default 64
 
