@@ -20,6 +20,7 @@ config CORNE_WIDGET_STATUS
     select LV_USE_ANIMATION
     select LV_USE_LINE 
     select LV_FONT_UNSCII_8
+    select ZMK_WPM
 
 config LV_Z_VDB_SIZE
     default 64
