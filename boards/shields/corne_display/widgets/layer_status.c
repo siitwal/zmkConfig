@@ -28,7 +28,7 @@ void init_label(lv_draw_label_dsc_t *label_dsc, lv_color_t color, const lv_font_
     label_dsc->align = align;
 }
 
-static void draw_layer(lv_obj_t *widget, lv_color_t cbuf[], const struct status_state *state) {
+static void draw_layer(lv_obj_t *widget, lv_color_t cbuf[], const struct layer_status_state state) {
 	lv_obj_t *canvas = lv_obj_get_child(widget, 0);
 
 	lv_draw_rect_dsc_t rect_black_dsc;
