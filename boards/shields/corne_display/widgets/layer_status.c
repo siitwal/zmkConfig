@@ -32,12 +32,12 @@ static void draw_layer(lv_obj_t *widget, lv_color_t cbuf[], const struct layer_s
 	lv_obj_t *canvas = lv_obj_get_child(widget, 0);
 
 	lv_draw_rect_dsc_t rect_black_dsc;
-	init_rect(&rect_black_dsc, LVGL_BACKGROUND);
+	init_rect(&rect_black_dsc, lv_color_black());
 	lv_canvas_draw_rect(canvas, 0, 0, 32, 12, &rect_black_dsc);
 
 
 	lv_draw_label_dsc_t label;
-    init_label(&label, LVGL_FOREGROUND, &lv_font_unscii_8, LV_TEXT_ALIGN_RIGHT);
+    init_label(&label, lv_color_white(), &lv_font_unscii_8, LV_TEXT_ALIGN_RIGHT);
 	lv_canvas_draw_text(canvas, 0, 0, 32, &label_dsc, "sys");
 
 
@@ -49,7 +49,7 @@ static void draw_layer(lv_obj_t *widget, lv_color_t cbuf[], const struct layer_s
     img.header.w = 32;
     img.header.h = 12;
 
-    lv_canvas_fill_bg(canvas, LVGL_BACKGROUND, LV_OPA_COVER);
+    lv_canvas_fill_bg(canvas, lv_color_black(), LV_OPA_COVER);
     lv_canvas_transform(canvas, &img, 900, LV_IMG_ZOOM_NONE, 0, 0, 32 / 2, 12 / 2, true);
 }
 
