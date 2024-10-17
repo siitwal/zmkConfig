@@ -24,43 +24,35 @@ LV_IMG_DECLARE(bongo_cat_both1);
 LV_IMG_DECLARE(bongo_cat_both1_open);
 LV_IMG_DECLARE(bongo_cat_both2);
 
-#define ANIMATION_SPEED_IDLE 10000
+#define ANIMATION_SPEED_IDLE 2000
 const lv_img_dsc_t *idle_imgs[] = {
-    &bongo_cat_both1_open,
-    &bongo_cat_both1_open,
-    &bongo_cat_both1_open,
-    &bongo_cat_both1,
+    &bongo_cat_idle0,
+    &bongo_cat_idle1,
+    &bongo_cat_idle2,
+    &bongo_cat_idle3,
+    &bongo_cat_idle4,
 };
 
-#define ANIMATION_SPEED_SLOW 2000
+#define ANIMATION_SPEED_SLOW 2400
 const lv_img_dsc_t *slow_imgs[] = {
-    &bongo_cat_left1,
-    &bongo_cat_both1,
-    &bongo_cat_both1,
-    &bongo_cat_right1,
-    &bongo_cat_both1,
-    &bongo_cat_both1,
-    &bongo_cat_left1,
-    &bongo_cat_both1,
-    &bongo_cat_both1,
+    &bongo_cat_none_tap,
+    &bongo_cat_left_tap,
+    &bongo_cat_both_tap,
+    &bongo_cat_right_tap,
 };
 
-#define ANIMATION_SPEED_MID 500
+#define ANIMATION_SPEED_MID 1600
 const lv_img_dsc_t *mid_imgs[] = {
-    &bongo_cat_left2,
-    &bongo_cat_left1,
-    &bongo_cat_none,
-    &bongo_cat_right2,
-    &bongo_cat_right1,
-    &bongo_cat_none,
+    &bongo_cat_none_tap,
+    &bongo_cat_left_tap,
+    &bongo_cat_both_tap,
+    &bongo_cat_right_tap,
 };
 
-#define ANIMATION_SPEED_FAST 200
+#define ANIMATION_SPEED_FAST 250
 const lv_img_dsc_t *fast_imgs[] = {
-    &bongo_cat_both2,
-    &bongo_cat_both1,
-    &bongo_cat_none,
-    &bongo_cat_none,
+    &bongo_cat_left_tap,
+    &bongo_cat_right_tap,
 };
 
 struct bongo_cat_wpm_status_state {
@@ -84,7 +76,7 @@ static void set_animation(lv_obj_t *animing, struct bongo_cat_wpm_status_state s
             lv_animimg_start(animing);
             current_anim_state = anim_state_idle;
         }
-    } else if (state.wpm < 30) {
+    } else if (state.wpm < 25) {
         if (current_anim_state != anim_state_slow) {
             lv_animimg_set_src(animing, SRC(slow_imgs));
             lv_animimg_set_duration(animing, ANIMATION_SPEED_SLOW);
@@ -92,7 +84,7 @@ static void set_animation(lv_obj_t *animing, struct bongo_cat_wpm_status_state s
             lv_animimg_start(animing);
             current_anim_state = anim_state_slow;
         }
-    } else if (state.wpm < 70) {
+    } else if (state.wpm < 60) {
         if (current_anim_state != anim_state_mid) {
             lv_animimg_set_src(animing, SRC(mid_imgs));
             lv_animimg_set_duration(animing, ANIMATION_SPEED_MID);
