@@ -44,6 +44,10 @@ ZMK_SUBSCRIPTION(widget_layer_status, zmk_layer_state_changed);
 int zmk_widget_layer_status_init(struct zmk_widget_layer_status *widget, lv_obj_t *parent) {
 	static lv_style_t style;
     lv_style_init(&style);
+	lv_style_set_text_font(&style, &lv_font_unscii_8);
+    lv_style_set_text_letter_space(&style, 1);
+    lv_style_set_text_line_space(&style, 1);
+	lv_style_set_text_color(&style, lv_color_hex(0xffffff));
 	lv_style_set_transform_angle(&style, 90);
 
     widget->obj = lv_label_create(parent);
