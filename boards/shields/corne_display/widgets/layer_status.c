@@ -51,7 +51,6 @@ int zmk_widget_layer_status_init(struct zmk_widget_layer_status *widget, lv_obj_
 	lv_style_set_transform_angle(&style, 90);
 
     widget->obj = lv_label_create(parent);
-	// lv_obj_add_style(widget->obj, &style, 0);
 
     sys_slist_append(&widgets, &widget->node);
 
