@@ -68,7 +68,7 @@ enum anim_state {
     anim_state_fast
 } current_anim_state;
 
-dfasdasdfasdfasdfasdfasdf
+
 struct bongo_cat_wpm_status_state bongo_cat_wpm_status_get_state(const zmk_event_t *eh) {
     struct zmk_wpm_state_changed *ev = as_zmk_wpm_state_changed(eh);
     return (struct bongo_cat_wpm_status_state) { .wpm = ev->state };
