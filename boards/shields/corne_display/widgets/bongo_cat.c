@@ -34,7 +34,7 @@ const lv_img_dsc_t *idle_imgs[] = {
     &bongo_cat_idle4,
 };
 
-#define ANIMATION_SPEED_SLOW 2400
+#define ANIMATION_SPEED_SLOW 2800
 const lv_img_dsc_t *slow_imgs[] = {
     &bongo_cat_none_tap,
     &bongo_cat_left_tap,
@@ -68,6 +68,41 @@ enum anim_state {
     anim_state_fast
 } current_anim_state;
 
+static void set_animation(lv_obj_t *animing, struct bongo_cat_wpm_status_state state) {
+    if (state.wpm < 5) {
+        if (current_anim_state != anim_state_idle) {
+            lv_animimg_set_src(animing, SRC(idle_imgs));
+            lv_animimg_set_duration(animing, ANIMATION_SPEED_IDLE);
+            lv_animimg_set_repeat_count(animing, LV_ANIM_REPEAT_INFINITE);
+            lv_animimg_start(animing);
+            current_anim_state = anim_state_idle;
+        }
+    } else if (state.wpm < 20) {
+        if (current_anim_state != anim_state_slow) {
+            lv_animimg_set_src(animing, SRC(slow_imgs));
+            lv_animimg_set_duration(animing, ANIMATION_SPEED_SLOW);
+            lv_animimg_set_repeat_count(animing, LV_ANIM_REPEAT_INFINITE);
+            lv_animimg_start(animing);
+            current_anim_state = anim_state_slow;
+        }
+    } else if (state.wpm < 60) {
+        if (current_anim_state != anim_state_mid) {
+            lv_animimg_set_src(animing, SRC(mid_imgs));
+            lv_animimg_set_duration(animing, ANIMATION_SPEED_MID);
+            lv_animimg_set_repeat_count(animing, LV_ANIM_REPEAT_INFINITE);
+            lv_animimg_start(animing);
+            current_anim_state = anim_state_mid;
+        }
+    } else {
+        if (current_anim_state != anim_state_fast) {
+            lv_animimg_set_src(animing, SRC(fast_imgs));
+            lv_animimg_set_duration(animing, ANIMATION_SPEED_FAST);
+            lv_animimg_set_repeat_count(animing, LV_ANIM_REPEAT_INFINITE);
+            lv_animimg_start(animing);
+            current_anim_state = anim_state_fast;
+        }
+    }
+}
 
 struct bongo_cat_wpm_status_state bongo_cat_wpm_status_get_state(const zmk_event_t *eh) {
     struct zmk_wpm_state_changed *ev = as_zmk_wpm_state_changed(eh);
