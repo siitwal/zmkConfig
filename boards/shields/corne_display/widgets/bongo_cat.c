@@ -15,14 +15,15 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
 static sys_slist_t widgets = SYS_SLIST_STATIC_INIT(&widgets);
 
-LV_IMG_DECLARE(bongo_cat_none);
-LV_IMG_DECLARE(bongo_cat_left1);
-LV_IMG_DECLARE(bongo_cat_left2);
-LV_IMG_DECLARE(bongo_cat_right1);
-LV_IMG_DECLARE(bongo_cat_right2);
-LV_IMG_DECLARE(bongo_cat_both1);
-LV_IMG_DECLARE(bongo_cat_both1_open);
-LV_IMG_DECLARE(bongo_cat_both2);
+LV_IMG_DECLARE(bongo_cat_idle0);
+LV_IMG_DECLARE(bongo_cat_idle1);
+LV_IMG_DECLARE(bongo_cat_idle2);
+LV_IMG_DECLARE(bongo_cat_idle3);
+LV_IMG_DECLARE(bongo_cat_idle4);
+LV_IMG_DECLARE(bongo_cat_right_tap);
+LV_IMG_DECLARE(bongo_cat_left_tap);
+LV_IMG_DECLARE(bongo_cat_none_tap);
+LV_IMG_DECLARE(bongo_cat_both_tap);
 
 #define ANIMATION_SPEED_IDLE 2000
 const lv_img_dsc_t *idle_imgs[] = {
