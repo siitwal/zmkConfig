@@ -18,8 +18,9 @@ struct layer_status_state {
 
 static void set_layer_symbol(lv_obj_t *label, struct layer_status_state state) {
     char text[13] = {};
-	snprintf(text, sizeof(text), "%s", "SIITWAL");
+	snprintf(text, sizeof(text), "%s", "sys");
 	lv_label_set_text(label, text);
+
 }
 
 static void layer_status_update_cb(struct layer_status_state state) {
@@ -41,7 +42,12 @@ ZMK_DISPLAY_WIDGET_LISTENER(widget_layer_status, struct layer_status_state, laye
 ZMK_SUBSCRIPTION(widget_layer_status, zmk_layer_state_changed);
 
 int zmk_widget_layer_status_init(struct zmk_widget_layer_status *widget, lv_obj_t *parent) {
+	static lv_style_t style;
+    lv_style_init(&style);
+	lv_style_set_transform_angle(&style, 90);
+
     widget->obj = lv_label_create(parent);
+	lv_obj_add_style(widget->obj, &style, 0);
 
     sys_slist_append(&widgets, &widget->node);
 

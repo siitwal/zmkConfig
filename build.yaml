@@ -19,6 +19,6 @@
 ---
 include:
   - board: nice_nano_v2
-    shield: corne_left
+    shield: corne_left corne_display
   - board: nice_nano_v2
-    shield: corne_right corne_display
+    shield: corne_right
