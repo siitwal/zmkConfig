@@ -38,7 +38,7 @@ static void draw_layer(lv_obj_t *widget, lv_color_t cbuf[], const struct layer_s
 
 	lv_draw_label_dsc_t label;
     init_label(&label, lv_color_white(), &lv_font_unscii_8, LV_TEXT_ALIGN_RIGHT);
-	lv_canvas_draw_text(canvas, 0, 0, 32, &label_dsc, "sys");
+	lv_canvas_draw_text(canvas, 0, 0, 32, &label, "sys");
 
 
 	static lv_color_t cbuf_tmp[32 * 12];
