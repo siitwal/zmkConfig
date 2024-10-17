@@ -13,14 +13,6 @@ lv_style_t global_style;
 lv_obj_t *zmk_display_status_screen() {
     lv_obj_t *screen;
 
-lv_disp_drv_t disp_drv;
-lv_disp_drv_init(&disp_drv);
-disp_drv.buffer = &disp_buf;
-disp_drv.flush_cb = lvgl_flush_cb;
-disp_drv.sw_rotate = 1;   // add for rotation
-disp_drv.rotated = LV_DISP_ROT_90;   // add for rotation
-lv_disp_drv_register(&disp_drv);
-
     screen = lv_obj_create(NULL);
 
     zmk_widget_bongo_cat_init(&bongo_cat_widget, screen);

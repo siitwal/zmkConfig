@@ -16,16 +16,46 @@ struct layer_status_state {
     const char *label;
 };
 
-static void set_layer_symbol(lv_obj_t *label, struct layer_status_state state) {
-    char text[13] = {};
-	snprintf(text, sizeof(text), "%s", "sys");
-	lv_label_set_text(label, text);
+void init_rect(lv_draw_rect_dsc_t *rect_dsc, lv_color_t bg_color) {
+    lv_draw_rect_dsc_init(rect_dsc);
+    rect_dsc->bg_color = bg_color;
+}
 
+void init_label(lv_draw_label_dsc_t *label_dsc, lv_color_t color, const lv_font_t *font, lv_text_align_t align) {
+    lv_draw_label_dsc_init(label_dsc);
+    label_dsc->color = color;
+    label_dsc->font = font;
+    label_dsc->align = align;
+}
+
+static void draw_layer(lv_obj_t *widget, lv_color_t cbuf[], const struct status_state *state) {
+	lv_obj_t *canvas = lv_obj_get_child(widget, 0);
+
+	lv_draw_rect_dsc_t rect_black_dsc;
+	init_rect(&rect_black_dsc, LVGL_BACKGROUND);
+	lv_canvas_draw_rect(canvas, 0, 0, 32, 12, &rect_black_dsc);
+
+
+	lv_draw_label_dsc_t label;
+    init_label(&label, LVGL_FOREGROUND, &lv_font_unscii_8, LV_TEXT_ALIGN_RIGHT);
+	lv_canvas_draw_text(canvas, 0, 0, 32, &label_dsc, "sys");
+
+
+	static lv_color_t cbuf_tmp[32 * 12];
+    memcpy(cbuf_tmp, cbuf, sizeof(cbuf_tmp));
+    lv_img_dsc_t img;
+    img.data = (void *)cbuf_tmp;
+    img.header.cf = LV_IMG_CF_TRUE_COLOR;
+    img.header.w = 32;
+    img.header.h = 12;
+
+    lv_canvas_fill_bg(canvas, LVGL_BACKGROUND, LV_OPA_COVER);
+    lv_canvas_transform(canvas, &img, 900, LV_IMG_ZOOM_NONE, 0, 0, 32 / 2, 12 / 2, true);
 }
 
 static void layer_status_update_cb(struct layer_status_state state) {
     struct zmk_widget_layer_status *widget;
-    SYS_SLIST_FOR_EACH_CONTAINER(&widgets, widget, node) { set_layer_symbol(widget->obj, state); }
+    SYS_SLIST_FOR_EACH_CONTAINER(&widgets, widget, node) { draw_layer(widget->obj, widget->cbuf, state); }
 }
 
 static struct layer_status_state layer_status_get_state(const zmk_event_t *eh) {
@@ -36,25 +66,21 @@ static struct layer_status_state layer_status_get_state(const zmk_event_t *eh) {
     };
 }
 
-ZMK_DISPLAY_WIDGET_LISTENER(widget_layer_status, struct layer_status_state, layer_status_update_cb,
-                            layer_status_get_state)
+ZMK_DISPLAY_WIDGET_LISTENER(widget_layer_status, struct layer_status_state, layer_status_update_cb, layer_status_get_state)
 
 ZMK_SUBSCRIPTION(widget_layer_status, zmk_layer_state_changed);
 
 int zmk_widget_layer_status_init(struct zmk_widget_layer_status *widget, lv_obj_t *parent) {
-	static lv_style_t style;
-    lv_style_init(&style);
-	lv_style_set_text_font(&style, &lv_font_unscii_8);
-    lv_style_set_text_letter_space(&style, 1);
-    lv_style_set_text_line_space(&style, 1);
-	lv_style_set_text_color(&style, lv_color_hex(0xffffff));
-	lv_style_set_transform_angle(&style, 90);
-
-    widget->obj = lv_label_create(parent);
+    widget->obj = lv_obj_create(parent);
+	lv_obj_set_size(widget->obj, 32, 12);
+	
+	lv_obj_t *layer = lv_canvas_create(widget->obj);
+    lv_obj_align(layer, LV_ALIGN_CENTER, 0, 0);
+    lv_canvas_set_buffer(layer, widget->cbuf, 32, 12, LV_IMG_CF_TRUE_COLOR);
 
     sys_slist_append(&widgets, &widget->node);
-
     widget_layer_status_init();
+
     return 0;
 }
 
