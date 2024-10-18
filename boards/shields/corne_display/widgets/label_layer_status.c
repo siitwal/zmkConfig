@@ -38,12 +38,12 @@ static void draw_layer(lv_obj_t *widget, lv_color_t cbuf[], const struct label_l
 	lv_obj_t *canvas = lv_obj_get_child(widget, 0);
 
 	lv_draw_rect_dsc_t rect_black_dsc;
-	init_rect(&rect_black_dsc, lv_color_white());
+	init_rect(&rect_black_dsc, lv_color_black());
 	lv_canvas_draw_rect(canvas, 0, 0, LAYER_CANVAS_WIDTH, LAYER_CANVAS_HEIGHT, &rect_black_dsc);
 
 
 	lv_draw_label_dsc_t label;
-    init_label(&label, lv_color_black(), &lv_font_unscii_8, LV_TEXT_ALIGN_RIGHT);
+    init_label(&label, lv_color_white(), &lv_font_unscii_8, LV_TEXT_ALIGN_RIGHT);
 	lv_canvas_draw_text(canvas, 0, 0, LAYER_CANVAS_WIDTH, &label, "sys");
 
 

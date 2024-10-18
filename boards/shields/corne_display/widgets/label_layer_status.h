@@ -3,8 +3,8 @@
 #include <lvgl.h>
 #include <zephyr/kernel.h>
 
-#define LAYER_CANVAS_WIDTH 32
-#define LAYER_CANVAS_HEIGHT 12
+#define LAYER_CANVAS_WIDTH 12
+#define LAYER_CANVAS_HEIGHT 32
 
 struct zmk_widget_label_layer_status {
     sys_snode_t node;
