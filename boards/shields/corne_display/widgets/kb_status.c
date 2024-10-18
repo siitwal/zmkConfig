@@ -55,23 +55,18 @@ static void draw_kb_status(lv_obj_t *widget, lv_color_t cbuf[], const struct bat
         strcpy(text, LV_SYMBOL_CHARGE " ");
     }
 
-    char perc[5] = {};
+    char perc[6] = {};
     snprintf(perc, sizeof(perc), "%3u%%", level);
     strcat(text, perc);
 
-    if (level > 95) strcat(text, LV_SYMBOL_BATTERY_FULL);
-    else if (level > 65) strcat(text, LV_SYMBOL_BATTERY_3);
-    else if (level > 35) strcat(text, LV_SYMBOL_BATTERY_2);
-    else if (level > 5) strcat(text, LV_SYMBOL_BATTERY_1);
-    else strcat(text, LV_SYMBOL_BATTERY_EMPTY);
-
-    lv_label_set_text(label, text);
-
-
-	char text[8] = {};
-	snprintf(text, sizeof(text), "%s", state.label);
+    // if (level > 95) strcat(text, LV_SYMBOL_BATTERY_FULL);
+    // else if (level > 65) strcat(text, LV_SYMBOL_BATTERY_3);
+    // else if (level > 35) strcat(text, LV_SYMBOL_BATTERY_2);
+    // else if (level > 5) strcat(text, LV_SYMBOL_BATTERY_1);
+    // else strcat(text, LV_SYMBOL_BATTERY_EMPTY);
 
 	lv_canvas_draw_text(canvas, 0, 0, LAYER_CANVAS_WIDTH, &label, text);
+
 
 
 	static lv_color_t cbuf_tmp[LAYER_CANVAS_WIDTH * LAYER_CANVAS_HEIGHT];
