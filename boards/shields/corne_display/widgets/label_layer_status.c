@@ -30,7 +30,7 @@ static void draw_layer(lv_obj_t *widget, lv_color_t cbuf[], const struct label_l
 
 	lv_draw_rect_dsc_t rect_dsc;
     lv_draw_rect_dsc_init(&rect_dsc);
-    rect_dsc->bg_color = lv_color_white();
+    rect_dsc.bg_color = lv_color_white();
 	lv_canvas_draw_rect(canvas, 0, 0, LAYER_CANVAS_WIDTH, LAYER_CANVAS_HEIGHT, &rect_dsc);
 
 	lv_draw_label_dsc_t label;
