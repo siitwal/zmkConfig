@@ -9,7 +9,7 @@
 struct zmk_widget_kb_status {
     sys_snode_t node;
     lv_obj_t *obj;
-	lv_color_t battery_cbuf[LV_CANVAS_BUF_SIZE_TRUE_COLOR(LAYER_CANVAS_WIDTH, LAYER_CANVAS_HEIGHT)];
+	lv_color_t cbuf[LV_CANVAS_BUF_SIZE_TRUE_COLOR(LAYER_CANVAS_WIDTH, LAYER_CANVAS_HEIGHT)];
 };
 
 int zmk_widget_kb_status_init(struct zmk_widget_kb_status *widget, lv_obj_t *parent);
