@@ -55,7 +55,7 @@ static void draw_layer(lv_obj_t *widget, lv_color_t cbuf[], const struct label_l
     img.header.w = LAYER_CANVAS_WIDTH;
     img.header.h = LAYER_CANVAS_HEIGHT;
 
-    lv_canvas_fill_bg(canvas, lv_color_black(), LV_OPA_COVER);
+    lv_canvas_fill_bg(canvas, lv_color_white(), LV_OPA_COVER);
     lv_canvas_transform(canvas, &img, 900, LV_IMG_ZOOM_NONE, 0, 0, LAYER_CANVAS_WIDTH / 2, LAYER_CANVAS_HEIGHT / 2, true);
 }
 
