@@ -79,7 +79,6 @@ ZMK_DISPLAY_WIDGET_LISTENER(widget_label_layer_status, struct label_layer_status
 ZMK_SUBSCRIPTION(widget_label_layer_status, zmk_layer_state_changed);
 
 int zmk_widget_label_layer_status_init(struct zmk_widget_label_layer_status *widget, lv_obj_t *parent) {
-
     widget->obj = lv_obj_create(parent);
 	lv_obj_set_size(widget->obj, LAYER_CANVAS_WIDTH, LAYER_CANVAS_HEIGHT);
 	
