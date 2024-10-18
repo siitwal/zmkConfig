@@ -52,7 +52,7 @@
     };
 	keymap {
 		compatible = "zmk,keymap";
-		default_layer {
+		default_layer { // layer 0: def
 // DONE
 // ╔════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
 // ║																							                ║
@@ -67,7 +67,7 @@
 // ║       	     		       └───────┴───────┴───────┘    └───────┴───────┴───────┘                           ║
 // ║																											║
 // ╚════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
-
+			display-name = "def";
 			bindings = <
 				&kp ESC   &kp Q &kp W &kp E &kp R   &kp T    &kp Y &kp U  &kp I     &kp O   &kp P    &grdel
 				&kp LCMD  &kp A &kp S &kp D &kp F   &kp G    &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
@@ -77,7 +77,7 @@
 		};
 
 
-		lower_layer {
+		lower_layer { // layer 1: dig
 // DONE
 // ╔════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
 // ║					     																	                ║
@@ -92,7 +92,7 @@
 // ║		     		       └───────┴───────┴───────┘    └───────┴───────┴───────┘                           ║
 // ║																							                ║
 // ╚════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
-
+			display-name = "dig";
 			bindings = <
 				&kp ESC   &kp N1    &kp N2   &kp N3 &kp N4    &kp N5       &kp N6   &kp N7    &kp N8    &kp N9    &kp N0 &grdel
 				&kp LCMD  &kp PSCRN &kp INS  &none  &kp TAB   &mo 4        &kp LEFT &kp DOWN  &kp UP    &kp RIGHT &none  &none
@@ -102,7 +102,7 @@
 		};
 
 
-		rise_layer {
+		rise_layer { // layer 2: sym
 // DONE
 // ╔════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
 // ║																						                    ║
@@ -117,7 +117,7 @@
 // ║   		     		       └───────┴───────┴───────┘    └───────┴───────┴───────┘                           ║
 // ║																						                    ║
 // ╚════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
-
+			display-name = "sym";
 			bindings = <
 				&kp ESC   &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT     &kp CARET &kp AMPS  &kp LPAR &kp RPAR &kp STAR &grdel
 				&none     &none    &none  &none    &none    &none         &kp MINUS &kp EQUAL &kp LBKT &kp RBKT &kp BSLH &kp GRAVE
@@ -126,7 +126,7 @@
 			>;
 		};
 
-		fn_layer {
+		fn_layer { // layer 3: fn
 // DONE 
 // ╔════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
 // ║									  								                                        ║
@@ -141,7 +141,7 @@
 // ║	    		           └───────┴───────┴───────┘    └───────┴───────┴───────┘                           ║
 // ║																			                                ║
 // ╚════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
-
+			display-name = "fn";
 			bindings = <
 				&none &kp F1  &kp F2  &kp F3  &kp F4  &kp F5     &kp F6  &kp F7  &kp F8  &kp F9  &kp F10 &none
 				&none &kp F11 &kp F12 &kp F13 &kp F14 &kp F15    &kp F16 &kp F17 &kp F18 &kp F19 &kp F20 &none
@@ -150,7 +150,7 @@
 			>;
 		};
 
-		sys_settings_layer {
+		sys_settings_layer { //layer 4: sys
 // DONE
 // ╔════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
 // ║																		                                    ║
@@ -165,7 +165,7 @@
 // ║ 	    	 	           └───────┴───────┴───────┘    └───────┴───────┴───────┘                           ║
 // ║																		                                    ║
 // ╚════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
-
+			display-name = "sys";
 			bindings = <
 				&kp C_PWR     &kp C_RESET     &none &none &none &none      &kp C_BRI_MAX &kp C_BRI_UP &kp C_BRI_AUTO &kp C_BRI_DN &kp C_BRI_MIN &none 
 				&kp C_AL_LOCK &kp C_AL_LOGOFF &none &none &none &none      &none         &kp C_VOL_UP &kp C_MUTE     &kp C_VOL_DN &none         &none 
@@ -175,7 +175,7 @@
 		};
 
 
-		kb_settings_layer {
+		kb_settings_layer { //layer 5: kbr
 // DONE
 // ╔════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
 // ║																		                                    ║
@@ -190,7 +190,7 @@
 // ║ 	     		           └───────┴───────┴───────┘    └───────┴───────┴───────┘                           ║
 // ║																									        ║
 // ╚════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
-
+			display-name = "kbr";
 			bindings = <
 				&bt BT_CLR &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4         &none        &none &none &none &none &soft_off
 				&bt BT_NXT &none         &none         &none         &none         &none                &out OUT_USB &none &none &none &none &none
