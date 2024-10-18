@@ -49,7 +49,14 @@ static void draw_kb_status(lv_obj_t *widget, lv_color_t cbuf[], const struct bat
     label.color = lv_color_black();
     label.font = &lv_font_montserrat_12;
     label.align = LV_TEXT_ALIGN_CENTER;
-	lv_canvas_draw_text(canvas, 0, 0, LAYER_CANVAS_WIDTH, &label, text);
+	lv_canvas_draw_text(canvas, 0, 4, LAYER_CANVAS_WIDTH, &label, text);
+
+
+	lv_draw_line_dsc_t line;
+	int points[] = {0,0,32,0};
+	lv_draw_line_dsc_init(&line);
+	line.color = lv_color_black();
+	lv_canvas_draw_line(canvas, points, 2, &line);
 
 
 	static lv_color_t cbuf_tmp[LAYER_CANVAS_WIDTH * LAYER_CANVAS_HEIGHT];
@@ -61,7 +68,6 @@ static void draw_kb_status(lv_obj_t *widget, lv_color_t cbuf[], const struct bat
     img.header.h = LAYER_CANVAS_HEIGHT;
     lv_canvas_fill_bg(canvas, lv_color_white(), LV_OPA_COVER);
     lv_canvas_transform(canvas, &img, 900, LV_IMG_ZOOM_NONE, 0, 0, LAYER_CANVAS_WIDTH / 2, LAYER_CANVAS_HEIGHT / 2, true);
-
 }
 
 void battery_update(struct battery_state state) {
@@ -89,7 +95,7 @@ int zmk_widget_kb_status_init(struct zmk_widget_kb_status *widget, lv_obj_t *par
 	lv_obj_set_size(widget->obj, LAYER_CANVAS_WIDTH, LAYER_CANVAS_HEIGHT);
 	
 	lv_obj_t *kb = lv_canvas_create(widget->obj);
-    lv_obj_align(kb, LV_TEXT_ALIGN_CENTER, 0, 0);
+    lv_obj_align(kb, LV_ALIGN_TOP_LEFT, 0, 0);
     lv_canvas_set_buffer(kb, widget->cbuf, LAYER_CANVAS_WIDTH, LAYER_CANVAS_HEIGHT, LV_IMG_CF_TRUE_COLOR);
 
     sys_slist_append(&widgets, &widget->node);
