@@ -87,7 +87,7 @@ void battery_update(struct battery_state state) {
     SYS_SLIST_FOR_EACH_CONTAINER(&widgets, widget, node) { draw_kb_status(widget->obj, widget->cbuf, state); }
 }
 
-static struct battery_state battery_status_get_state(const zmk_event_t *eh) {
+static struct battery_state battery_get_state(const zmk_event_t *eh) {
     const struct zmk_battery_state_changed *ev = as_zmk_battery_state_changed(eh);
 
     return (struct battery_state){
@@ -96,7 +96,7 @@ static struct battery_state battery_status_get_state(const zmk_event_t *eh) {
     };
 }
 
-ZMK_DISPLAY_WIDGET_LISTENER(widget_battery, struct battery_state, battery_update_cb, battery_get_state)
+ZMK_DISPLAY_WIDGET_LISTENER(widget_battery, struct battery_state, battery_update, battery_get_state)
 
 ZMK_SUBSCRIPTION(widget_battery, zmk_battery_state_changed);
 ZMK_SUBSCRIPTION(widget_battery_status, zmk_usb_conn_state_changed);
@@ -111,7 +111,7 @@ int zmk_widget_kb_status_init(struct zmk_widget_kb_status *widget, lv_obj_t *par
     lv_canvas_set_buffer(kb, widget->cbuf, LAYER_CANVAS_WIDTH, LAYER_CANVAS_HEIGHT, LV_IMG_CF_TRUE_COLOR);
 
     sys_slist_append(&widgets, &widget->node);
-    widget_battery_status_init();
+    widget_battery_init();
 
     return 0;
 }
