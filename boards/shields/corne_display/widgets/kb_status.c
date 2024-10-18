@@ -33,17 +33,6 @@ static void draw_kb_status(lv_obj_t *widget, lv_color_t cbuf[], const struct bat
     if (state.usb_present) strcat(text, LV_SYMBOL_CHARGE);
 	else strcat(text, "%");
 
-    // if (level > 95) strcat(text, LV_SYMBOL_BATTERY_FULL);
-    // else if (level > 65) strcat(text, LV_SYMBOL_BATTERY_3);
-    // else if (level > 35) strcat(text, LV_SYMBOL_BATTERY_2);
-    // else if (level > 5) strcat(text, LV_SYMBOL_BATTERY_1);
-    // else strcat(text, LV_SYMBOL_BATTERY_EMPTY);
-	//
-	// lv_draw_rect_dsc_t rect_black_dsc;
-	// lv_draw_rect_dsc_init(&rect_black_dsc);
- //    rect_black_dsc.bg_color = lv_color_white();
-	// lv_canvas_draw_rect(canvas, 0, 0, LAYER_CANVAS_WIDTH, LAYER_CANVAS_HEIGHT, &rect_black_dsc);
-
 
 	lv_draw_label_dsc_t label;
 	lv_draw_label_dsc_init(&label);
@@ -53,11 +42,16 @@ static void draw_kb_status(lv_obj_t *widget, lv_color_t cbuf[], const struct bat
 	lv_canvas_draw_text(canvas, 0, 10, LAYER_CANVAS_WIDTH, &label, text);
 
 
-	lv_draw_line_dsc_t line;
-	lv_point_t points[] = { {0, 0}, {LAYER_CANVAS_WIDTH, 0} };
-	lv_draw_line_dsc_init(&line);
-	line.color = lv_color_black();
-	lv_canvas_draw_line(canvas, points, 2, &line);
+	lv_draw_rect_dsc_t rect_black_dsc;
+	lv_draw_rect_dsc_init(&rect_black_dsc);
+    rect_black_dsc.bg_color = lv_color_black();
+	lv_canvas_draw_rect(canvas, 0, 0, LAYER_CANVAS_WIDTH, 2, &rect_black_dsc);
+
+	// lv_draw_line_dsc_t line;
+	// lv_point_t points[] = { {0, 0}, {LAYER_CANVAS_WIDTH, 0} };
+	// lv_draw_line_dsc_init(&line);
+	// line.color = lv_color_black();
+	// lv_canvas_draw_line(canvas, points, 2, &line);
 
 
 	static lv_color_t cbuf_tmp[LAYER_CANVAS_WIDTH * LAYER_CANVAS_HEIGHT];
