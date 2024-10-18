@@ -28,11 +28,9 @@ static void draw_kb_status(lv_obj_t *widget, lv_color_t cbuf[], const struct bat
 	char text[9] = {};
     uint8_t level = state.level;
 
-    if (state.usb_present) strcpy(text, LV_SYMBOL_CHARGE " ");
-
-    char perc[6] = {};
-    snprintf(perc, sizeof(perc), "%3u%%", level);
-    strcat(text, perc);
+    snprintf(text, sizeof(perc), "%3u%", level);
+    if (state.usb_present) strcpy(text, LV_SYMBOL_CHARGE);
+	else strcpy("%");
 
     // if (level > 95) strcat(text, LV_SYMBOL_BATTERY_FULL);
     // else if (level > 65) strcat(text, LV_SYMBOL_BATTERY_3);

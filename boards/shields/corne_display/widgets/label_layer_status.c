@@ -43,7 +43,7 @@ static void draw_layer(lv_obj_t *widget, lv_color_t cbuf[], const struct label_l
 
 
 	lv_draw_label_dsc_t label;
-    init_label(&label, lv_color_black(), &lv_font_montserrat_10, LV_TEXT_ALIGN_RIGHT);
+    init_label(&label, lv_color_black(), &lv_font_montserrat_12, LV_TEXT_ALIGN_RIGHT);
 	
 	char text[4] = {};
 	snprintf(text, sizeof(text), "%s", state.label);
