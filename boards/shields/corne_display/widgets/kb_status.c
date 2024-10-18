@@ -45,9 +45,9 @@ static void draw_kb_status(lv_obj_t *widget, lv_color_t cbuf[], const struct bat
 
 	lv_draw_label_dsc_t label;
 	lv_draw_label_dsc_init(&label);
-    label_dsc->color = lv_color_black();
-    label_dsc->font = &lv_font_unscii_8;
-    label_dsc->align = LV_TEXT_ALIGN_LEFT;
+    label.color = lv_color_black();
+    label.font = &lv_font_unscii_8;
+    label.align = LV_TEXT_ALIGN_LEFT;
 	lv_canvas_draw_text(canvas, 0, 0, LAYER_CANVAS_WIDTH, &label, text);
 
 
