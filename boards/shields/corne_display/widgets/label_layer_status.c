@@ -84,7 +84,7 @@ int zmk_widget_label_layer_status_init(struct zmk_widget_label_layer_status *wid
     lv_canvas_set_buffer(layer, widget->cbuf, LAYER_CANVAS_WIDTH, LAYER_CANVAS_HEIGHT, LV_IMG_CF_TRUE_COLOR);
 
     sys_slist_append(&widgets, &widget->node);
-    widget_layer_status_init();
+    widget_label_layer_status_init();
 
     return 0;
 }
