@@ -24,36 +24,13 @@ struct battery_state {
 };
 
 
-void init_rect(lv_draw_rect_dsc_t *rect_dsc, lv_color_t bg_color) {
-    lv_draw_rect_dsc_init(rect_dsc);
-    rect_dsc->bg_color = bg_color;
-}
-
-void init_label(lv_draw_label_dsc_t *label_dsc, lv_color_t color, const lv_font_t *font, lv_text_align_t align) {
-    lv_draw_label_dsc_init(label_dsc);
-    label_dsc->color = color;
-    label_dsc->font = font;
-    label_dsc->align = align;
-}
-
 static void draw_kb_status(lv_obj_t *widget, lv_color_t cbuf[], const struct battery_state state) {
 	lv_obj_t *canvas = lv_obj_get_child(widget, 0);
-
-	lv_draw_rect_dsc_t rect_black_dsc;
-	init_rect(&rect_black_dsc, lv_color_white());
-	lv_canvas_draw_rect(canvas, 0, 0, LAYER_CANVAS_WIDTH, LAYER_CANVAS_HEIGHT, &rect_black_dsc);
-
-
-	lv_draw_label_dsc_t label;
-    init_label(&label, lv_color_black(), &lv_font_unscii_8, LV_TEXT_ALIGN_RIGHT);
 	
 	char text[9] = {};
-
     uint8_t level = state.level;
 
-    if (state.usb_present) {
-        strcpy(text, LV_SYMBOL_CHARGE " ");
-    }
+    if (state.usb_present) strcpy(text, LV_SYMBOL_CHARGE " ");
 
     char perc[6] = {};
     snprintf(perc, sizeof(perc), "%3u%%", level);
@@ -65,8 +42,13 @@ static void draw_kb_status(lv_obj_t *widget, lv_color_t cbuf[], const struct bat
     // else if (level > 5) strcat(text, LV_SYMBOL_BATTERY_1);
     // else strcat(text, LV_SYMBOL_BATTERY_EMPTY);
 
-	lv_canvas_draw_text(canvas, 0, 0, LAYER_CANVAS_WIDTH, &label, text);
 
+	lv_draw_label_dsc_t label;
+	lv_draw_label_dsc_init(&label);
+    label_dsc->color = lv_color_black();
+    label_dsc->font = &lv_font_unscii_8;
+    label_dsc->align = LV_TEXT_ALIGN_LEFT;
+	lv_canvas_draw_text(canvas, 0, 0, LAYER_CANVAS_WIDTH, &label, text);
 
 
 	static lv_color_t cbuf_tmp[LAYER_CANVAS_WIDTH * LAYER_CANVAS_HEIGHT];
@@ -76,7 +58,6 @@ static void draw_kb_status(lv_obj_t *widget, lv_color_t cbuf[], const struct bat
     img.header.cf = LV_IMG_CF_TRUE_COLOR;
     img.header.w = LAYER_CANVAS_WIDTH;
     img.header.h = LAYER_CANVAS_HEIGHT;
-
     lv_canvas_fill_bg(canvas, lv_color_white(), LV_OPA_COVER);
     lv_canvas_transform(canvas, &img, 900, LV_IMG_ZOOM_NONE, 0, 0, LAYER_CANVAS_WIDTH / 2, LAYER_CANVAS_HEIGHT / 2, true);
 
