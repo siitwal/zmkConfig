@@ -38,7 +38,7 @@ static void draw_layer(lv_obj_t *widget, lv_color_t cbuf[], const struct label_l
     label.color = lv_color_black();
     label.font = &lv_font_montserrat_12;
     label.align = LV_TEXT_ALIGN_CENTER;
-	lv_canvas_draw_text(canvas, 0, 0, LAYER_CANVAS_WIDTH, &label, text);
+	lv_canvas_draw_text(canvas, 0, 2, LAYER_CANVAS_WIDTH, &label, text);
 
 
 	static lv_color_t cbuf_tmp[LAYER_CANVAS_WIDTH * LAYER_CANVAS_HEIGHT];
