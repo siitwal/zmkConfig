@@ -24,6 +24,7 @@ struct battery_state {
 
 static void draw_kb_status(lv_obj_t *widget, lv_color_t cbuf[], const struct battery_state state) {
 	lv_obj_t *canvas = lv_obj_get_child(widget, 0);
+	lv_canvas_fill_bg(canvas, lv_color_white(), LV_OPA_COVER);
 	
 	char text[9] = {};
     uint8_t level = state.level;
@@ -37,11 +38,11 @@ static void draw_kb_status(lv_obj_t *widget, lv_color_t cbuf[], const struct bat
     // else if (level > 35) strcat(text, LV_SYMBOL_BATTERY_2);
     // else if (level > 5) strcat(text, LV_SYMBOL_BATTERY_1);
     // else strcat(text, LV_SYMBOL_BATTERY_EMPTY);
-
-	lv_draw_rect_dsc_t rect_black_dsc;
-	lv_draw_rect_dsc_init(&rect_black_dsc);
-    rect_black_dsc.bg_color = lv_color_white();
-	lv_canvas_draw_rect(canvas, 0, 0, LAYER_CANVAS_WIDTH, LAYER_CANVAS_HEIGHT, &rect_black_dsc);
+	//
+	// lv_draw_rect_dsc_t rect_black_dsc;
+	// lv_draw_rect_dsc_init(&rect_black_dsc);
+ //    rect_black_dsc.bg_color = lv_color_white();
+	// lv_canvas_draw_rect(canvas, 0, 0, LAYER_CANVAS_WIDTH, LAYER_CANVAS_HEIGHT, &rect_black_dsc);
 
 
 	lv_draw_label_dsc_t label;
