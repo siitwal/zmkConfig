@@ -53,9 +53,13 @@ static void draw_layer(lv_obj_t *widget, lv_color_t cbuf[], const struct layer_s
     lv_canvas_transform(canvas, &img, 900, LV_IMG_ZOOM_NONE, 0, 0, 32 / 2, 12 / 2, true);
 }
 
+static void set_layer_status(struct zmk_widget_layer_status *widget, struct layer_status_state state) {
+	draw_layer(widget->obj, widget->cbuf, state);
+}
+
 static void layer_status_update_cb(struct layer_status_state state) {
     struct zmk_widget_layer_status *widget;
-    SYS_SLIST_FOR_EACH_CONTAINER(&widgets, widget, node) { draw_layer(widget->obj, widget->cbuf, state); }
+    SYS_SLIST_FOR_EACH_CONTAINER(&widgets, widget, node) { set_layer_status(widget, state); }
 }
 
 static struct layer_status_state layer_status_get_state(const zmk_event_t *eh) {

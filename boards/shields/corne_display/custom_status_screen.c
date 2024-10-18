@@ -15,9 +15,9 @@ lv_obj_t *zmk_display_status_screen() {
 
     screen = lv_obj_create(NULL);
 
-    // zmk_widget_bongo_cat_init(&bongo_cat_widget, screen);
+    zmk_widget_bongo_cat_init(&bongo_cat_widget, screen);
 	zmk_widget_layer_status_init(&layer_status_widget, screen);
-	// lv_obj_align(zmk_widget_bongo_cat_obj(&bongo_cat_widget), LV_ALIGN_TOP_LEFT, 0, 0);
+	lv_obj_align(zmk_widget_bongo_cat_obj(&bongo_cat_widget), LV_ALIGN_TOP_LEFT, 0, 0);
 	lv_obj_align(zmk_widget_layer_status_obj(&layer_status_widget), LV_ALIGN_CENTER, 30, 0);
 
     return screen;
