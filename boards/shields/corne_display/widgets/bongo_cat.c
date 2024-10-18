@@ -1,8 +1,6 @@
 #include <zephyr/kernel.h>
 #include <zephyr/bluetooth/services/bas.h>
-
 #include <zephyr/logging/log.h>
-LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
 #include <zmk/display.h>
 #include <zmk/event_manager.h>
@@ -11,9 +9,15 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
 #include "bongo_cat.h"
 
-#define SRC(array) (const void **)array, sizeof(array) / sizeof(lv_img_dsc_t *)
 
-static sys_slist_t widgets = SYS_SLIST_STATIC_INIT(&widgets);
+#define SRC(array) (const void **)array, sizeof(array) / sizeof(lv_img_dsc_t *)
+#define ANIMATION_SPEED_IDLE 2000
+#define ANIMATION_SPEED_SLOW 2800
+#define ANIMATION_SPEED_MID 1200
+#define ANIMATION_SPEED_FAST 250
+
+
+LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
 LV_IMG_DECLARE(bongo_cat_idle0);
 LV_IMG_DECLARE(bongo_cat_idle1);
@@ -25,7 +29,9 @@ LV_IMG_DECLARE(bongo_cat_left_tap);
 LV_IMG_DECLARE(bongo_cat_none_tap);
 LV_IMG_DECLARE(bongo_cat_both_tap);
 
-#define ANIMATION_SPEED_IDLE 2000
+
+static sys_slist_t widgets = SYS_SLIST_STATIC_INIT(&widgets);
+
 const lv_img_dsc_t *idle_imgs[] = {
     &bongo_cat_idle0,
     &bongo_cat_idle1,
@@ -34,7 +40,6 @@ const lv_img_dsc_t *idle_imgs[] = {
     &bongo_cat_idle4,
 };
 
-#define ANIMATION_SPEED_SLOW 2800
 const lv_img_dsc_t *slow_imgs[] = {
     &bongo_cat_none_tap,
     &bongo_cat_left_tap,
@@ -42,7 +47,6 @@ const lv_img_dsc_t *slow_imgs[] = {
     &bongo_cat_right_tap,
 };
 
-#define ANIMATION_SPEED_MID 1200
 const lv_img_dsc_t *mid_imgs[] = {
     &bongo_cat_none_tap,
     &bongo_cat_left_tap,
@@ -50,7 +54,6 @@ const lv_img_dsc_t *mid_imgs[] = {
     &bongo_cat_right_tap,
 };
 
-#define ANIMATION_SPEED_FAST 250
 const lv_img_dsc_t *fast_imgs[] = {
     &bongo_cat_left_tap,
     &bongo_cat_right_tap,
@@ -114,8 +117,8 @@ void bongo_cat_wpm_status_update_cb(struct bongo_cat_wpm_status_state state) {
     SYS_SLIST_FOR_EACH_CONTAINER(&widgets, widget, node) { set_animation(widget->obj, state); }
 }
 
-ZMK_DISPLAY_WIDGET_LISTENER(widget_bongo_cat, struct bongo_cat_wpm_status_state,
-                            bongo_cat_wpm_status_update_cb, bongo_cat_wpm_status_get_state)
+ZMK_DISPLAY_WIDGET_LISTENER(widget_bongo_cat, struct bongo_cat_wpm_status_state, 
+		bongo_cat_wpm_status_update_cb, bongo_cat_wpm_status_get_state)
 
 ZMK_SUBSCRIPTION(widget_bongo_cat, zmk_wpm_state_changed);
 
@@ -130,6 +133,4 @@ int zmk_widget_bongo_cat_init(struct zmk_widget_bongo_cat *widget, lv_obj_t *par
     return 0;
 }
 
-lv_obj_t *zmk_widget_bongo_cat_obj(struct zmk_widget_bongo_cat *widget) {
-    return widget->obj;
-}
+lv_obj_t *zmk_widget_bongo_cat_obj(struct zmk_widget_bongo_cat *widget) { return widget->obj; }
