@@ -33,33 +33,29 @@ static void draw_layer(lv_obj_t *widget, lv_color_t cbuf[], const struct layer_s
 
 	lv_draw_rect_dsc_t rect_black_dsc;
 	init_rect(&rect_black_dsc, lv_color_black());
-	lv_canvas_draw_rect(canvas, 0, 0, 32, 12, &rect_black_dsc);
+	lv_canvas_draw_rect(canvas, 0, 0, LAYER_CANVAS_WIDTH, LAYER_CANVAS_HEIGHT, &rect_black_dsc);
 
 
 	lv_draw_label_dsc_t label;
     init_label(&label, lv_color_white(), &lv_font_unscii_8, LV_TEXT_ALIGN_RIGHT);
-	lv_canvas_draw_text(canvas, 0, 0, 32, &label, "sys");
+	lv_canvas_draw_text(canvas, 0, 0, LAYER_CANVAS_WIDTH, &label, "sys");
 
 
-	static lv_color_t cbuf_tmp[32 * 12];
+	static lv_color_t cbuf_tmp[LAYER_CANVAS_WIDTH * LAYER_CANVAS_HEIGHT];
     memcpy(cbuf_tmp, cbuf, sizeof(cbuf_tmp));
     lv_img_dsc_t img;
     img.data = (void *)cbuf_tmp;
     img.header.cf = LV_IMG_CF_TRUE_COLOR;
-    img.header.w = 32;
-    img.header.h = 12;
+    img.header.w = LAYER_CANVAS_WIDTH;
+    img.header.h = LAYER_CANVAS_HEIGHT;
 
     lv_canvas_fill_bg(canvas, lv_color_black(), LV_OPA_COVER);
-    lv_canvas_transform(canvas, &img, 900, LV_IMG_ZOOM_NONE, 0, 0, 32 / 2, 12 / 2, true);
-}
-
-static void set_layer_status(struct zmk_widget_layer_status *widget, struct layer_status_state state) {
-	draw_layer(widget->obj, widget->cbuf, state);
+    lv_canvas_transform(canvas, &img, 900, LV_IMG_ZOOM_NONE, 0, 0, LAYER_CANVAS_WIDTH / 2, LAYER_CANVAS_HEIGHT / 2, true);
 }
 
 static void layer_status_update_cb(struct layer_status_state state) {
     struct zmk_widget_layer_status *widget;
-    SYS_SLIST_FOR_EACH_CONTAINER(&widgets, widget, node) { set_layer_status(widget, state); }
+    SYS_SLIST_FOR_EACH_CONTAINER(&widgets, widget, node) { draw_layer(widget->obj, widget->cbuf, state); }
 }
 
 static struct layer_status_state layer_status_get_state(const zmk_event_t *eh) {
@@ -76,11 +72,11 @@ ZMK_SUBSCRIPTION(widget_layer_status, zmk_layer_state_changed);
 
 int zmk_widget_layer_status_init(struct zmk_widget_layer_status *widget, lv_obj_t *parent) {
     widget->obj = lv_obj_create(parent);
-	lv_obj_set_size(widget->obj, 32, 12);
+	lv_obj_set_size(widget->obj, LAYER_CANVAS_WIDTH, LAYER_CANVAS_HEIGHT);
 	
 	lv_obj_t *layer = lv_canvas_create(widget->obj);
     lv_obj_align(layer, LV_ALIGN_CENTER, 0, 0);
-    lv_canvas_set_buffer(layer, widget->cbuf, 32, 12, LV_IMG_CF_TRUE_COLOR);
+    lv_canvas_set_buffer(layer, widget->cbuf, LAYER_CANVAS_WIDTH, LAYER_CANVAS_HEIGHT, LV_IMG_CF_TRUE_COLOR);
 
     sys_slist_append(&widgets, &widget->node);
     widget_layer_status_init();
