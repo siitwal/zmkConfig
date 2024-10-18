@@ -49,13 +49,14 @@ static void draw_kb_status(lv_obj_t *widget, lv_color_t cbuf[], const struct bat
     label.color = lv_color_black();
     label.font = &lv_font_montserrat_12;
     label.align = LV_TEXT_ALIGN_CENTER;
-	lv_canvas_draw_text(canvas, 0, 4, LAYER_CANVAS_WIDTH, &label, text);
+	lv_canvas_draw_text(canvas, 0, 10, LAYER_CANVAS_WIDTH, &label, text);
 
 
-	lv_draw_rect_dsc_t line;
-	lv_draw_rect_dsc_init(&line);
-    line.bg_color = lv_color_black();
-	lv_canvas_draw_rect(canvas, 0, 0, LAYER_CANVAS_WIDTH, 1, &line);
+	lv_draw_line_dsc_t line;
+	lv_point_t points[] = { {0, 0}, {LAYER_CANVAS_WIDTH, 0} };
+	lv_draw_line_dsc_init(&line);
+	line.color = lv_color_black();
+	lv_canvas_draw_line(canvas, points, 2, &line);
 
 
 	static lv_color_t cbuf_tmp[LAYER_CANVAS_WIDTH * LAYER_CANVAS_HEIGHT];
