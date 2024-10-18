@@ -44,7 +44,11 @@ static void draw_layer(lv_obj_t *widget, lv_color_t cbuf[], const struct label_l
 
 	lv_draw_label_dsc_t label;
     init_label(&label, lv_color_black(), &lv_font_unscii_8, LV_TEXT_ALIGN_RIGHT);
-	lv_canvas_draw_text(canvas, 0, 0, LAYER_CANVAS_WIDTH, &label, *state.label);
+	
+	char text[3] = {};
+	snprintf(text, sizeof(text), "%s", state.label);
+
+	lv_canvas_draw_text(canvas, 0, 0, LAYER_CANVAS_WIDTH, &label, text);
 
 
 	static lv_color_t cbuf_tmp[LAYER_CANVAS_WIDTH * LAYER_CANVAS_HEIGHT];
