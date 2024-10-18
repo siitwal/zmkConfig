@@ -23,6 +23,19 @@ struct battery_state {
     bool usb_present;
 };
 
+
+void init_rect(lv_draw_rect_dsc_t *rect_dsc, lv_color_t bg_color) {
+    lv_draw_rect_dsc_init(rect_dsc);
+    rect_dsc->bg_color = bg_color;
+}
+
+void init_label(lv_draw_label_dsc_t *label_dsc, lv_color_t color, const lv_font_t *font, lv_text_align_t align) {
+    lv_draw_label_dsc_init(label_dsc);
+    label_dsc->color = color;
+    label_dsc->font = font;
+    label_dsc->align = align;
+}
+
 static void draw_kb_status(lv_obj_t *widget, lv_color_t cbuf[], const struct battery_state state) {
 	lv_obj_t *canvas = lv_obj_get_child(widget, 0);
 
@@ -32,7 +45,7 @@ static void draw_kb_status(lv_obj_t *widget, lv_color_t cbuf[], const struct bat
 
 
 	lv_draw_label_dsc_t label;
-    init_label(&label, lv_color_black(), &lv_font_unscii_6, LV_TEXT_ALIGN_RIGHT);
+    init_label(&label, lv_color_black(), &lv_font_unscii_8, LV_TEXT_ALIGN_RIGHT);
 	
 	char text[9] = {};
 
