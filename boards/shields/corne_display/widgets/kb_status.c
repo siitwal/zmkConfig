@@ -2,7 +2,6 @@
 #include <zephyr/logging/log.h>
 
 #include <zmk/battery.h>
-#include <zmk/ble.h>
 #include <zmk/display.h>
 #include <zmk/events/battery_state_changed.h>
 #include <zmk/events/usb_conn_state_changed.h>
@@ -79,7 +78,7 @@ static struct battery_state battery_get_state(const zmk_event_t *eh) {
 ZMK_DISPLAY_WIDGET_LISTENER(widget_battery, struct battery_state, battery_update, battery_get_state)
 
 ZMK_SUBSCRIPTION(widget_battery, zmk_battery_state_changed);
-ZMK_SUBSCRIPTION(widget_battery_status, zmk_usb_conn_state_changed);
+ZMK_SUBSCRIPTION(widget_battery, zmk_usb_conn_state_changed);
 
 
 int zmk_widget_kb_status_init(struct zmk_widget_kb_status *widget, lv_obj_t *parent) {
