@@ -5,7 +5,7 @@
 #include <zephyr/logging/log.h>
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
-static struct zmk_widget_layer_status layer_status_widget;
+static struct zmk_widget_custom_layer_status layer_status_widget;
 static struct zmk_widget_bongo_cat bongo_cat_widget;
 
 lv_style_t global_style;

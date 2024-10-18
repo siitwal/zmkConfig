@@ -57,7 +57,7 @@ static void draw_layer(lv_obj_t *widget, lv_color_t cbuf[], const struct layer_s
 }
 
 static void layer_status_update_cb(struct layer_status_state state) {
-    struct zmk_widget_layer_status *widget;
+    struct zmk_widget_custom_layer_status *widget;
     SYS_SLIST_FOR_EACH_CONTAINER(&widgets, widget, node) { draw_layer(widget->obj, widget->cbuf, state); }
 }
 
@@ -73,7 +73,7 @@ ZMK_DISPLAY_WIDGET_LISTENER(widget_layer_status, struct layer_status_state, laye
 
 ZMK_SUBSCRIPTION(widget_layer_status, zmk_layer_state_changed);
 
-int zmk_widget_layer_status_init(struct zmk_widget_layer_status *widget, lv_obj_t *parent) {
+int zmk_widget_layer_status_init(struct zmk_widget_custom_layer_status *widget, lv_obj_t *parent) {
     widget->obj = lv_obj_create(parent);
 	lv_obj_set_size(widget->obj, LAYER_CANVAS_WIDTH, LAYER_CANVAS_HEIGHT);
 	
@@ -87,6 +87,6 @@ int zmk_widget_layer_status_init(struct zmk_widget_layer_status *widget, lv_obj_
     return 0;
 }
 
-lv_obj_t *zmk_widget_layer_status_obj(struct zmk_widget_layer_status *widget) {
+lv_obj_t *zmk_widget_layer_status_obj(struct zmk_widget_custom_layer_status *widget) {
     return widget->obj;
 }
