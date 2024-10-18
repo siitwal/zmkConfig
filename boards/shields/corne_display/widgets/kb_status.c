@@ -23,7 +23,7 @@ struct battery_state {
     bool usb_present;
 };
 
-static void draw_kb_status(lv_obj_t *label, struct battery_state state) {
+static void draw_kb_status(lv_obj_t *widget, lv_color_t cbuf[], const struct battery_state state) {
 	lv_obj_t *canvas = lv_obj_get_child(widget, 0);
 
 	lv_draw_rect_dsc_t rect_black_dsc;
@@ -76,7 +76,7 @@ static void draw_kb_status(lv_obj_t *label, struct battery_state state) {
 
 void battery_update(struct battery_state state) {
     struct zmk_widget_kb_status *widget;
-    SYS_SLIST_FOR_EACH_CONTAINER(&widgets, widget, node) { draw_kb_status(widget->obj, state); }
+    SYS_SLIST_FOR_EACH_CONTAINER(&widgets, widget, node) { draw_kb_status(widget->obj, widget->cbuf, state); }
 }
 
 static struct battery_state battery_status_get_state(const zmk_event_t *eh) {
