@@ -40,6 +40,11 @@ static void draw_kb_status(lv_obj_t *widget, lv_color_t cbuf[], const struct bat
     // else if (level > 5) strcat(text, LV_SYMBOL_BATTERY_1);
     // else strcat(text, LV_SYMBOL_BATTERY_EMPTY);
 
+	lv_draw_rect_dsc_t rect_black_dsc;
+	lv_draw_rect_dsc_init(&rect_black_dsc);
+    rect_black_dsc.bg_color = lv_color_white();
+	lv_canvas_draw_rect(canvas, 0, 0, LAYER_CANVAS_WIDTH, LAYER_CANVAS_HEIGHT, &rect_black_dsc);
+
 
 	lv_draw_label_dsc_t label;
 	lv_draw_label_dsc_init(&label);
