@@ -89,7 +89,7 @@ int zmk_widget_kb_status_init(struct zmk_widget_kb_status *widget, lv_obj_t *par
 	lv_obj_set_size(widget->obj, LAYER_CANVAS_WIDTH, LAYER_CANVAS_HEIGHT);
 	
 	lv_obj_t *kb = lv_canvas_create(widget->obj);
-    lv_obj_align(kb, LV_ALIGN_BOTTOM_LEFT, 0, 0);
+    lv_obj_align(kb, LV_TEXT_ALIGN_CENTER, 0, 0);
     lv_canvas_set_buffer(kb, widget->cbuf, LAYER_CANVAS_WIDTH, LAYER_CANVAS_HEIGHT, LV_IMG_CF_TRUE_COLOR);
 
     sys_slist_append(&widgets, &widget->node);
