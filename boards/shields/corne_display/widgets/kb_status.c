@@ -39,7 +39,7 @@ static void draw_kb_status(lv_obj_t *widget, lv_color_t cbuf[], const struct bat
     label.color = lv_color_black();
     label.font = &lv_font_montserrat_12;
     label.align = LV_TEXT_ALIGN_CENTER;
-	lv_canvas_draw_text(canvas, 0, 10, LAYER_CANVAS_WIDTH, &label, text);
+	lv_canvas_draw_text(canvas, 0, 6, LAYER_CANVAS_WIDTH, &label, text);
 
 
 	lv_draw_rect_dsc_t rect_black_dsc;
