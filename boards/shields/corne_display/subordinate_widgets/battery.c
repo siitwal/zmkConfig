@@ -60,7 +60,7 @@ static void draw_battery(struct zmk_widget_battery *widget, struct battery_state
 // BEGIN BATTERY
 
 void battery_update(struct battery_state state) {
-    struct zmk_widget_kb_status *widget;
+    struct zmk_widget_battery *widget;
     SYS_SLIST_FOR_EACH_CONTAINER(&widgets, widget, node) { draw_battery(widget, state); }
 }
 
