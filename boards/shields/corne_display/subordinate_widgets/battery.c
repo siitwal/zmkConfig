@@ -24,8 +24,8 @@ struct battery_state {
 };
 
 
-static void draw_kb_status(struct zmk_widget_kb_status *widget, struct battery_state state) {
-	lv_obj_t *canvas = lv_obj_get_child(widget-> obj, 0);
+static void draw_battery(struct zmk_widget_battery *widget, struct battery_state state) {
+	lv_obj_t *canvas = lv_obj_get_child(widget->obj, 0);
 	lv_canvas_fill_bg(canvas, lv_color_white(), LV_OPA_COVER);
 	
 	char text[9] = {};

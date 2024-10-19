@@ -25,6 +25,7 @@ static struct zmk_widget_bongo_cat widget_bongo_cat;
 
 #if IS_ENABLED(CONFIG_CORNE_WIDGET_STATUS_SUBORDINATE)
 static struct zmk_widget_image widget_image;
+static struct zmk_widget_battery widget_battery;
 #endif
 
 lv_style_t global_style;
@@ -46,8 +47,10 @@ lv_obj_t *zmk_display_status_screen() {
 
 #if IS_ENABLED(CONFIG_CORNE_WIDGET_STATUS_SUBORDINATE)
 	zmk_widget_image_init(&widget_image, screen);
+	zmk_widget_battery_init(&widget_battery, screen);
 
 	lv_obj_align(zmk_widget_image_obj(&widget_image), LV_ALIGN_TOP_RIGHT, 0, 0);
+	lv_obj_align(zmk_widget_battery_obj(&widget_battery), LV_ALIGN_TOP_LEFT, -10, 0);
 #endif
     return screen;
 }
