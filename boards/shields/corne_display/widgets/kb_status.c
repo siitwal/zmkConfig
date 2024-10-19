@@ -47,27 +47,27 @@ static void draw_kb_status(struct zmk_widget_kb_status *widget) {
 	
 	char text[9] = {};
 	
-	if (widget->state->layer_index == 0) {
-		snprintf(text, sizeof(text), "%3u", widget->state->battery);
-		if (widget->state->charging) strcat(text, LV_SYMBOL_CHARGE);
+	if (widget->state.layer_index == 0) {
+		snprintf(text, sizeof(text), "%3u", widget->state.battery);
+		if (widget->state.charging) strcat(text, LV_SYMBOL_CHARGE);
 		else strcat(text, "%");
 	} else {
-		switch (widget->state->selected_endpoint.transport) {
+		switch (widget->state.selected_endpoint.transport) {
 		case ZMK_TRANSPORT_USB:
 			strcat(text, LV_SYMBOL_USB);
 			break;
 		case ZMK_TRANSPORT_BLE:
-			if (widget->state->active_profile_bonded) {
-				if (widget->state->active_profile_connected) {
+			if (widget->state.active_profile_bonded) {
+				if (widget->state.active_profile_connected) {
 					snprintf(text, sizeof(text), LV_SYMBOL_WIFI " %i " LV_SYMBOL_OK, 
-							widget->state->selected_endpoint.ble.profile_index + 1);
+							widget->state.selected_endpoint.ble.profile_index + 1);
             }	else {
 					snprintf(text, sizeof(text), LV_SYMBOL_WIFI " %i " LV_SYMBOL_CLOSE,
-							widget->state->selected_endpoint.ble.profile_index + 1);
+							widget->state.selected_endpoint.ble.profile_index + 1);
 				}
 			} else {
 				snprintf(text, sizeof(text), LV_SYMBOL_WIFI " %i " LV_SYMBOL_SETTINGS,
-							widget->state->selected_endpoint.ble.profile_index + 1);
+							widget->state.selected_endpoint.ble.profile_index + 1);
 			}
 			break;
 		}
@@ -99,8 +99,8 @@ static void draw_kb_status(struct zmk_widget_kb_status *widget) {
 // BEGIN LAYER
 
 void set_layer_state(struct zmk_widget_kb_status *widget, struct layer_state *state) {
-	widget->state->layer_index = state->index;
-	widget->state->layer_label = state->label;
+	widget->state.layer_index = state->index;
+	widget->state.layer_label = state->label;
 }
 
 static void layer_update(struct layer_state state) {
@@ -123,9 +123,9 @@ ZMK_SUBSCRIPTION(widget_layer, zmk_layer_state_changed);
 
 // BEGIN OUTPUT
 void set_output_state(struct zmk_widget_kb_status *widget, struct output_state *state) {
-	widget->state->selected_endpoint = state->selected_endpoint;
-	widget->state->active_profile_connected = state->connected;
-	widget->state->active_profile_bonded = state->bonded;
+	widget->state.selected_endpoint = state->selected_endpoint;
+	widget->state.active_profile_connected = state->connected;
+	widget->state.active_profile_bonded = state->bonded;
 }
 
 static struct output_state output_get_state(const zmk_event_t *_eh) {
@@ -152,8 +152,8 @@ ZMK_SUBSCRIPTION(widget_output, zmk_ble_active_profile_changed);
 
 // BEGIN BATTERY
 void set_battery_state(struct zmk_widget_kb_status *widget, struct battery_state *state) {
-	widget->state->battery = state->level;
-	widget->state->charging = state->charging;
+	widget->state.battery = state->level;
+	widget->state.charging = state->charging;
 }
 
 void battery_update(struct battery_state state) {
@@ -179,7 +179,6 @@ ZMK_SUBSCRIPTION(widget_battery, zmk_usb_conn_state_changed);
 // END BATTERY
 
 int zmk_widget_kb_status_init(struct zmk_widget_kb_status *widget, lv_obj_t *parent) {
-	widget->obj->state = (struct status_state) {};
 	widget->obj = lv_obj_create(parent);
 	lv_obj_set_size(widget->obj, LAYER_CANVAS_WIDTH, LAYER_CANVAS_HEIGHT);
 	
