@@ -47,7 +47,7 @@ static void draw_kb_status(struct zmk_widget_kb_status *widget) {
 	
 	char text[9] = {};
 	
-	if (widget->state->layer->index == 0) {
+	if (widget->state->layer_index == 0) {
 		snprintf(text, sizeof(text), "%3u", widget->state->battery);
 		if (widget->state->charging) strcat(text, LV_SYMBOL_CHARGE);
 		else strcat(text, "%");
