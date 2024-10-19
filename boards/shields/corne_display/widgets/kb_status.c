@@ -179,6 +179,7 @@ ZMK_SUBSCRIPTION(widget_battery, zmk_usb_conn_state_changed);
 // END BATTERY
 
 int zmk_widget_kb_status_init(struct zmk_widget_kb_status *widget, lv_obj_t *parent) {
+	widget->obj->state = (struct status_state) {};
 	widget->obj = lv_obj_create(parent);
 	lv_obj_set_size(widget->obj, LAYER_CANVAS_WIDTH, LAYER_CANVAS_HEIGHT);
 	
