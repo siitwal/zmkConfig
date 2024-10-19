@@ -2,11 +2,11 @@
 #include <zephyr/logging/log.h>
 
 #include <zmk/display.h>
-#include <zmk/display/widgets/layer_status.h>
-#include <zmk/events/layer_state_changed.h>
 #include <zmk/event_manager.h>
 #include <zmk/endpoints.h>
 #include <zmk/keymap.h>
+
+#include <zmk/events/layer_state_changed.h>
 
 #include "label_layer_status.h"
 
@@ -38,7 +38,7 @@ static void draw_layer(lv_obj_t *widget, lv_color_t cbuf[], const struct label_l
     label.color = lv_color_black();
     label.font = &lv_font_montserrat_12;
     label.align = LV_TEXT_ALIGN_CENTER;
-	lv_canvas_draw_text(canvas, 0, 2, LAYER_CANVAS_WIDTH, &label, text);
+	lv_canvas_draw_text(canvas, 0, 4, LAYER_CANVAS_WIDTH, &label, text);
 
 
 	static lv_color_t cbuf_tmp[LAYER_CANVAS_WIDTH * LAYER_CANVAS_HEIGHT];
