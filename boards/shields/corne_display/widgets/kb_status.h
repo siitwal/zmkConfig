@@ -10,7 +10,7 @@
 struct status_state {
     uint8_t battery;
     bool charging;
-    struct zmk_endpoint_instance *selected_endpoint;
+    struct zmk_endpoint_instance selected_endpoint;
     int active_profile_index;
     bool active_profile_connected;
     bool active_profile_bonded;
