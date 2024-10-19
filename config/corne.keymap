@@ -17,10 +17,9 @@
 #include <dt-bindings/zmk/outputs.h>
 
 
-&soft_off {
-	hold-time-ms = <2000>; 
-};
+&soft_off { hold-time-ms = <2000>; };
 &caps_word { continue-list = <BACKSPACE DELETE UNDER>; };
+&sl { release-after-ms = <1500>; };
 
 
 / {
@@ -29,7 +28,7 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&sk LSHFT>, <&caps_word>;
+            bindings = <&kp LSHFT>, <&caps_word>;
         };
 		td_ccs: tap_dance_ctrl_ctrl_shift {
             compatible = "zmk,behavior-tap-dance";
@@ -71,7 +70,7 @@
 			bindings = <
 				&kp ESC   &kp Q &kp W &kp E &kp R   &kp T    &kp Y &kp U  &kp I     &kp O   &kp P    &grdel
 				&kp LCMD  &kp A &kp S &kp D &kp F   &kp G    &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
-				&td_scw   &kp Z &kp X &kp C &kp V   &kp B    &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &sl 3
+				&td_scw   &kp Z &kp X &kp C &kp V   &kp B    &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &td_scw
 							       &mo 2 &td_l1 &kp SPACE    &kp RET &td_ccs &kp LALT
 			>;
 		};
@@ -86,7 +85,7 @@
 // ║   ├───────┼───────┼───────┼───────┼───────┼───────┤    ├───────┼───────┼───────┼───────┼───────┼───────┤   ║
 // ║   │  CMD  │ PSCRN │  INS  │       │  TAB  │  ML4  │    │  LFT  │  DOWN │   UP  │  RGT  │       │       │   ║
 // ║   ├───────┼───────┼───────┼───────┼───────┼───────┤    ├───────┼───────┼───────┼───────┼───────┼───────┤   ║
-// ║   │ SHIFT │  SL3  │  TL5  │       │ LCTRL │ CAPS  │    │  HOME │ PG_DN │ PG_UP │  END  │       │  TL1  │   ║
+// ║   │ SHIFT │  SL3  │  TL5  │       │ LCTRL │ CAPS  │    │ PG_DN │  END  │  HOME │ PG_UP │       │  TL1  │   ║
 // ║   └───────────────────────┼───────┼───────┼───────┤    ├───────┼───────┼───────┼───────┴───────┴───────┘   ║
 // ║                           │  ML2  │  ML1  │  SPC  │    │  ENT  │ LCTRL │  ALT  │					        ║
 // ║		     		       └───────┴───────┴───────┘    └───────┴───────┴───────┘                           ║
@@ -94,10 +93,10 @@
 // ╚════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
 			display-name = "dig";
 			bindings = <
-				&kp ESC   &kp N1    &kp N2   &kp N3 &kp N4    &kp N5       &kp N6   &kp N7    &kp N8    &kp N9    &kp N0 &grdel
-				&kp LCMD  &kp PSCRN &kp INS  &none  &kp TAB   &mo 4        &kp LEFT &kp DOWN  &kp UP    &kp RIGHT &none  &none
-				&kp LSHFT &sl 3     &tog 5   &none  &kp LCTRL &kp CAPS     &kp HOME &kp PG_DN &kp PG_UP &kp END   &none  &tog 1
-							                     &mo 2 &mo 1 &kp SPACE     &kp RET  &kp LCTRL &kp LALT
+				&kp ESC   &kp N1    &kp N2   &kp N3 &kp N4    &kp N5       &kp N6    &kp N7    &kp N8    &kp N9    &kp N0 &grdel
+				&kp LCMD  &kp PSCRN &kp INS  &none  &kp TAB   &mo 4        &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT &none  &none
+				&kp LSHFT &sl 3     &tog 5   &none  &kp LCTRL &kp CAPS     &kp PG_DN &kp END   &kp HOME  &kp PG_UP &none  &tog 1
+							                     &mo 2 &mo 1 &kp SPACE     &kp RET   &kp LCTRL &kp LALT
 			>;
 		};
 
@@ -107,11 +106,11 @@
 // ╔════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
 // ║																						                    ║
 // ║   ┌───────┬───────┬───────┬───────┬───────┬───────┐    ┌───────┬───────┬───────┬───────┬───────┬───────┐   ║
-// ║   │  ESC  │   !   │   @   │   #   │   $   │   %   │    │   ^   │   &   │   (   │   )   │   *   │  DEL  │   ║
+// ║   │  ESC  │   !   │   @   │   #   │   $   │   %   │    │   ^   │   (   │   )   │   &   │   *   │  DEL  │   ║
 // ║   ├───────┼───────┼───────┼───────┼───────┼───────┤    ├───────┼───────┼───────┼───────┼───────┼───────┤   ║
-// ║   │       │       │       │       │       │       │    │   -   │   =   │   [   │   ]   │   \   │   `   │   ║
+// ║   │       │       │       │       │       │       │    │   -   │   [   │   ]   │   =   │   \   │   `   │   ║
 // ║   ├───────┼───────┼───────┼───────┼───────┼───────┤    ├───────┼───────┼───────┼───────┼───────┼───────┤   ║
-// ║   │ SHIFT │       │       │       │       │       │    │   _   │   +   │   {   │   }   │   |   │   ~   │   ║
+// ║   │ SHIFT │       │       │       │       │       │    │   _   │   {   │   }   │   +   │   |   │   ~   │   ║
 // ║   └───────┴───────┴───────┼───────┼───────┼───────┤    ├───────┼───────┼───────┼───────┴───────┴───────┘   ║
 // ║                           │  ML2  │       │  SPC  │    │  ENT  │  CTRL │  ALT  │					        ║
 // ║   		     		       └───────┴───────┴───────┘    └───────┴───────┴───────┘                           ║
@@ -119,9 +118,9 @@
 // ╚════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
 			display-name = "sym";
 			bindings = <
-				&kp ESC   &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT     &kp CARET &kp AMPS  &kp LPAR &kp RPAR &kp STAR &grdel
-				&none     &none    &none  &none    &none    &none         &kp MINUS &kp EQUAL &kp LBKT &kp RBKT &kp BSLH &kp GRAVE
-				&kp LSHFT &none    &none  &none    &none    &none         &kp UNDER &kp PLUS  &kp LBRC &kp RBRC &kp PIPE &kp TILDE
+				&kp ESC   &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT     &kp CARET &kp LPAR  &kp RPAR &kp AMPS  &kp STAR &grdel
+				&none     &none    &none  &none    &none    &none         &kp MINUS &kp LBKT  &kp RBKT &kp EQUAL &kp BSLH &kp GRAVE
+				&kp LSHFT &none    &none  &none    &none    &none         &kp UNDER &kp LBRC  &kp RBRC &kp PLUS  &kp PIPE &kp TILDE
 					                            &mo 2 &none &kp SPACE     &kp RET &kp LCTRL &kp LALT
 			>;
 		};
