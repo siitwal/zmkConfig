@@ -153,7 +153,7 @@ ZMK_SUBSCRIPTION(widget_output, zmk_ble_active_profile_changed);
 // BEGIN BATTERY
 void set_battery_state(struct zmk_widget_kb_status *widget, struct battery_state *state) {
 	widget->state->battery = state->level;
-	widget->state->charging = state->usb_present;
+	widget->state->charging = state->charging;
 }
 
 void battery_update(struct battery_state state) {
