@@ -8,10 +8,21 @@ choice ZMK_DISPLAY_STATUS_SCREEN
     default ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
 endchoice
 
-config ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
-    imply CORNE_WIDGET_STATUS
+if ZMK_SPLIT_ROLE_CENTRAL
 
-config CORNE_WIDGET_STATUS
+config ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
+    imply CORNE_WIDGET_STATUS_CENTRAL
+
+endif
+
+if !ZMK_SPLIT_ROLE_CENTRAL
+
+config ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
+    imply CORNE_WIDGET_STATUS_SUBORDINATE
+
+endif
+
+config CORNE_WIDGET_STATUS_CENTRAL
     bool "Custom corne status widget"
     select LV_USE_LABEL
     select LV_USE_IMG
@@ -19,8 +30,16 @@ config CORNE_WIDGET_STATUS
     select LV_USE_ANIMIMG 
     select LV_USE_ANIMATION
     select LV_USE_LINE 
-    select LV_FONT_UNSCII_8
     select ZMK_WPM
+
+config CORNE_WIDGET_STATUS_SUBORDINATE
+    bool "Custom corne status widget"
+    select LV_USE_LABEL
+    select LV_USE_IMG
+    select LV_USE_CANVAS
+    select LV_USE_ANIMIMG 
+    select LV_USE_ANIMATION
+    select LV_USE_LINE 
 
 config LV_Z_VDB_SIZE
     default 64
