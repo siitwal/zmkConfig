@@ -103,8 +103,8 @@ void set_layer_state(struct zmk_widget_kb_status *widget, struct layer_state *st
 	widget->state->layer_label = state->label;
 }
 
-static void layer_update(struct label_layer_status_state state) {
-    struct zmk_widget_label_layer_status *widget;
+static void layer_update(struct layer_state state) {
+    struct zmk_widget_kb_status *widget;
     SYS_SLIST_FOR_EACH_CONTAINER(&widgets, widget, node) {
 		set_layer_state(widget, &state);
 		draw_kb_status(widget);
