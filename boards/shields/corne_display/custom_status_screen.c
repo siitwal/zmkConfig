@@ -23,7 +23,7 @@ lv_obj_t *zmk_display_status_screen() {
 
 	lv_obj_align(zmk_widget_label_layer_status_obj(&widget_label_layer_status), LV_ALIGN_TOP_RIGHT, 0, 0);
 	lv_obj_align(zmk_widget_bongo_cat_obj(&widget_bongo_cat), LV_ALIGN_TOP_LEFT, 22, 0);
-	lv_obj_align(zmk_widget_kb_status_obj(&widget_kb_status), LV_ALIGN_TOP_LEFT, -18, 0);
+	lv_obj_align(zmk_widget_kb_status_obj(&widget_kb_status), LV_ALIGN_TOP_LEFT, -10, 0);
 
     return screen;
 }

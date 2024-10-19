@@ -58,17 +58,9 @@ static void draw_kb_status(struct zmk_widget_kb_status *widget) {
 			break;
 		case ZMK_TRANSPORT_BLE:
 			if (widget->state.active_profile_bonded) {
-				if (widget->state.active_profile_connected) {
-					snprintf(text, sizeof(text), LV_SYMBOL_WIFI " %i " LV_SYMBOL_OK, 
-							widget->state.selected_endpoint.ble.profile_index + 1);
-            }	else {
-					snprintf(text, sizeof(text), LV_SYMBOL_WIFI " %i " LV_SYMBOL_CLOSE,
-							widget->state.selected_endpoint.ble.profile_index + 1);
-				}
-			} else {
-				snprintf(text, sizeof(text), LV_SYMBOL_WIFI " %i " LV_SYMBOL_SETTINGS,
-							widget->state.selected_endpoint.ble.profile_index + 1);
-			}
+				if (widget->state.active_profile_connected) strcat(text, LV_SYMBOL_WIFI " " LV_SYMBOL_OK);
+            	else strcat(text, LV_SYMBOL_WIFI " " LV_SYMBOL_CLOSE);
+			} else strcat(text, LV_SYMBOL_WIFI " " LV_SYMBOL_SETTINGS);
 			break;
 		}
 	}

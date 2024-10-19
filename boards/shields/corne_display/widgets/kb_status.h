@@ -4,8 +4,8 @@
 #include <zephyr/kernel.h>
 #include <zmk/endpoints.h>
 
-#define LAYER_CANVAS_WIDTH 40
-#define LAYER_CANVAS_HEIGHT 40
+#define LAYER_CANVAS_WIDTH 32
+#define LAYER_CANVAS_HEIGHT 32
 
 struct status_state {
     uint8_t battery;
