@@ -129,7 +129,7 @@ void set_output_state(struct zmk_widget_kb_status *widget, struct output_state *
 }
 
 static struct output_state output_get_state(const zmk_event_t *_eh) {
-    return (struct output_status_state){
+    return (struct output_state){
 		.selected_endpoint = zmk_endpoints_selected(),
         .connected = zmk_ble_active_profile_is_connected(),
         .bonded = !zmk_ble_active_profile_is_open()
